@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="80">
+ <tileset firstgid="1" name="parkingLot" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../img/map/terrain-Derivation_5.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="20">
+  <data encoding="csv">
+111,111,111,111,8,8,8,8,8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,8,8,8,8,8,8,8,
+111,147,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,1,1,1,1,1,110,110,147,110,110,110,110,147,110,110,110,110,147,110,110,1,1,1,1,1,1,1,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,1,1,1,1,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,176,176,176,176,8,
+1,1,1,111,1,1,1,147,1,1,1,1,1,1,1,1,1,1,1,1,1,147,1,1,1,176,143,143,143,8,
+1,1,1,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,143,118,8,
+111,111,111,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,118,118,8,
+111,111,111,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,118,118,8,
+1,1,1,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,143,118,8,
+1,1,1,111,1,1,1,147,1,1,1,1,1,1,1,1,1,1,1,1,1,147,1,1,1,176,143,143,143,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,176,176,176,176,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,1,1,1,1,8,
+111,20,1,1,1,1,1,110,110,110,147,110,110,110,147,110,110,110,110,147,110,110,1,1,1,1,1,1,1,8,
+111,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,147,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,111,111,111,8,8,8,8,8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,8,8,8,8,8,8,8
+</data>
+ </layer>
+ <objectgroup name="Entities">
+  <object id="7" name="CoinEntity" x="947" y="285" width="32" height="64">
+   <properties>
+    <property name="framewidth" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="14" name="BuildEntity" x="224" y="223" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="32" name="BuildEntity" x="288" y="129" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="33" name="BuildEntity" x="449" y="128" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="34" name="BuildEntity" x="224" y="383" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="35" name="BuildEntity" x="319" y="478" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="36" name="BuildEntity" x="449" y="479" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="37" name="BuildEntity" x="609" y="478" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="38" name="BuildEntity" x="673" y="383" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="39" name="BuildEntity" x="672" y="221" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="40" name="BuildEntity" x="608" y="126" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="41" name="BuildEntity" x="32" y="30" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+  <object id="42" name="BuildEntity" x="31" y="577" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

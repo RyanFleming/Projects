@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Crater Tower Defense Game</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad-76x76.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
+        <link rel="manifest" href="manifest.json">
+    </head>
+    <body>
+        <!-- Canvas placeholder -->
+        <div id="screen"></div>
+
+        <!-- melonJS Library -->
+        <!-- build:js js/app.min.js -->
+        <script type="text/javascript" src="lib/melonJS.js"></script>
+
+        <!-- Plugin(s) -->
+        <script type="text/javascript" src="lib/plugins/debug/debugPanel.js"></script>
+
+        <!-- Game Scripts -->
+        <script type="text/javascript" src="js/game.js"></script>
+        <script type="text/javascript" src="build/js/resources.js"></script>
+
+        <script type="text/javascript" src="js/entities/entities.js"></script>
+        <script type="text/javascript" src="js/entities/HUD.js"></script>
+		
+		<!-- Enemies -->
+		<script type="text/javascript" src="js/entities/enemy_manager.js"></script>
+		<script type="text/javascript" src="js/entities/enemy.js"></script>
+		<script type="text/javascript" src="js/entities/enemy2.js"></script>
+		<script type="text/javascript" src="js/entities/enemy3.js"></script>
+		<script type="text/javascript" src="js/entities/enemy4.js"></script>
+		<script type="text/javascript" src="js/entities/directions.js"></script>
+		
+		<!-- Towers -->
+		<script type="text/javascript" src="js/entities/turret.js"></script>
+		<script type="text/javascript" src="js/entities/lightningTower.js"></script>
+		<script type="text/javascript" src="js/entities/sprayCan.js"></script>
+		<script type="text/javascript" src="js/entities/barricade.js"></script>
+		
+		<!-- Projectiles -->
+		<script type="text/javascript" src="js/entities/peanut.js"></script>
+		<script type="text/javascript" src="js/entities/lightning.js"></script>
+		<script type="text/javascript" src="js/entities/pepperSpray.js"></script>
+		<script type="text/javascript" src="js/entities/blank.js"></script>
+
+		<!-- Game modes and screens -->
+        <script type="text/javascript" src="js/screens/title.js"></script>
+        <script type="text/javascript" src="js/screens/play.js"></script>
+		<script type="text/javascript" src="js/screens/intermediate.js"></script> 
+		<script type="text/javascript" src="js/screens/loss.js"></script>
+		<script type="text/javascript" src="js/screens/win.js"></script>
+        <!-- /build -->
+
+        <!-- Bootstrap -->
+        <script type="text/javascript">
+            window.onReady(function onReady() {
+                game.onload();
+            });
+        </script>
+    </body>
+</html>
