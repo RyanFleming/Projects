@@ -1,1 +1,1 @@
-Database descriptions and schema located in CS340FinalProjectRyanWFleming.pdf
+Outline describing database found in CS340FinalProjectRyanWFleming.pdf. Also includes ER Diagram, database schema and all queries.
