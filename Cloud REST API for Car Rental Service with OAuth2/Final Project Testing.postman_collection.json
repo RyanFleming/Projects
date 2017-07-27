@@ -1,0 +1,1300 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Final Project Testing",
+		"_postman_id": "3912b54f-ac20-5022-1836-a95710adc686",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Cars",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE everything",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET empty Cars after DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Has corrext text\"] = responseBody.has(\"[]\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Car 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CarOneLink\", jsonData.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"911\",\n\t\"manufacturer\" : \"Porsche\",\n\t\"checkedIn\" : true,\n\t\"vin\" : \"JM3TB2BV2B0318188\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Car 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CarTwoLink\", jsonData.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"M3\",\n\t\"manufacturer\" : \"BMW\",\n\t\"checkedIn\" : true,\n\t\"vin\" : \"1FADP3K2XEL403895\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Cars after POSTs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var data = JSON.parse(responseBody);",
+							"var carOne = postman.getEnvironmentVariable(\"CarLinkOne\");",
+							"var carTwo = postman.getEnvironmentVariable(\"CarLinkTwo\");",
+							"tests[\"Has car 1\"] = data.id === carOne;",
+							"tests[\"Has car 2\"] = data.id === carTwo;",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"BMW\",\n\t\"manufacturer\" : \"M3\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot DELETE Car 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarOneLink}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Car 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarOneLink}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Cars after DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var data = JSON.parse(responseBody);",
+							"var carTwo = postman.getEnvironmentVariable(\"CarLinkTwo\");",
+							"tests[\"Has car 2\"] = data.id === carTwo;",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"BMW\",\n\t\"manufacturer\" : \"M3\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Has corrext text\"] = responseBody.has(\"[]\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CustomerOneLink\", jsonData.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"John Smith\",\n\t\"balance\" : 0.0,\n\t\"checked_out\" : [],\n\t\"license\" : \"A352-0637-2742\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot Query the Customer ID with GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"BMW\",\n\t\"manufacturer\" : \"M3\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Query the Customer ID with GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"BMW\",\n\t\"manufacturer\" : \"M3\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot checkout Car to Customer using PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}/cars/{{CarTwoLink}}",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "checkout Car to Customer using PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}/cars/{{CarTwoLink}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot see if Car is checked out to Customer using GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}/cars/{{CarTwoLink}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure Car is checked out to Customer using GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var carTwo = postman.getEnvironmentVariable(\"CarTwoLink\");",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Has car 2\"] = data.id === carTwo;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}/cars/{{CarTwoLink}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET all cars that are checked out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var carTwo = postman.getEnvironmentVariable(\"CarLinkTwo\");",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Has car 2\"] = data.id === carTwo;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars?checkedIn=false",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot check in a Car using DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}/cars/{{CarTwoLink}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "check in a Car using DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}/cars/{{CarTwoLink}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure no cars are checked out using GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Has corrext text\"] = responseBody.has(\"[]\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars?checkedIn=false",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot GET specific Car using ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarTwoLink}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET specific Car using ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var data = JSON.parse(responseBody);",
+							"var carTwo = postman.getEnvironmentVariable(\"CarTwoLink\");",
+							"tests[\"Has car 2\"] = data.id === carTwo;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarTwoLink}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot edit Car via PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarTwoLink}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"7 Series\"\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "edit Car via PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Updated via PATCH\"] = data.model === \"7 Series\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarTwoLink}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"7 Series\"\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot edit Car via PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarTwoLink}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"7 Series\",\n\t\"manufacturer\" : \"Mercedes-Benz\",\n\t\"checkedIn\" : true,\n\t\"vin\" : \"1FADP3K2XEL403895\"\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "edit Car via PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Updated via PUT\"] = data.manufacturer === \"Mercedes-Benz\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars/{{CarTwoLink}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"7 Series\",\n\t\"manufacturer\" : \"Mercedes-Benz\",\n\t\"checkedIn\" : true,\n\t\"vin\" : \"1FADP3K2XEL403895\"\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot edit Customer via PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"John Smith\",\n\t\"balance\" : 100.00,\n\t\"checked_out\" : [],\n\t\"license\" : \"A352-0637-2742\"\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "edit Customer via PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Updated via PUT\"] = data.balance === 100.00;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"John Smith\",\n\t\"balance\" : 100.00,\n\t\"checked_out\" : [],\n\t\"license\" : \"A352-0637-2742\"\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot edit Customer via PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"John Doe\"\n\t\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "edit Customer via PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Updated via PUT\"] = data.name === \"John Doe\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"John Doe\"\n\t\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "make sure unauthorized user cannot DELETE specific Customer using ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE specific Customer using ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers/{{CustomerOneLink}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET empty customers after DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Has corrext text\"] = responseBody.has(\"[]\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"model\" : \"porsche\",\n\t\"manufacturer\" : \"ford\",\n\t\"checkedIn\" : true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all Cars",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET all Cars after DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Has corrext text\"] = responseBody.has(\"[]\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/cars",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CustomerTwoLink\", jsonData.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Janet Jackson\",\n\t\"balance\" : 0.0,\n\t\"checked_out\" : [],\n\t\"license\" : \"A352-0637-2742\"\n\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all Customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Has corrext text\"] = responseBody.has(\"[]\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://natural-region-161321.appspot.com/customers",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
