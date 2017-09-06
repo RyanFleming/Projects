@@ -58,8 +58,8 @@ class OauthHandler(webapp2.RequestHandler):
                 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
                 parameters = {
                     'code': auth_code,
-                    'client_id': '1058038285098-v89g24dko8rl5n0ok3tb83ja0v968d2e.apps.googleusercontent.com',
-                    'client_secret': 'moAQGdNdNrkTesTpmFf-X9nP',
+                    'client_id': '',
+                    'client_secret': '',
                     'redirect_uri': 'http://natural-region-161321.appspot.com/oauth',
                     'grant_type': 'authorization_code'
                 }
@@ -106,8 +106,8 @@ class OauthHandler(webapp2.RequestHandler):
                         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
                         parameters = {
                             'code': auth_code,
-                            'client_id': '1058038285098-v89g24dko8rl5n0ok3tb83ja0v968d2e.apps.googleusercontent.com',
-                            'client_secret': 'moAQGdNdNrkTesTpmFf-X9nP',
+                            'client_id': '',
+                            'client_secret': '',
                             'redirect_uri': 'http://natural-region-161321.appspot.com/oauth',
                             'grant_type': 'authorization_code'
                         }
@@ -149,7 +149,7 @@ class MainPage(webapp2.RequestHandler):
         thisState = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(15))
         globalListOfStates.append(thisState)
         self.response.write('MAKE NEW ACCESS TOKEN')
-        url = 'https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=1058038285098-v89g24dko8rl5n0ok3tb83ja0v968d2e.apps.googleusercontent.com&redirect_uri=http://natural-region-161321.appspot.com/oauth&scope=email&state=' + thisState
+        url = 'https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=&redirect_uri=http://natural-region-161321.appspot.com/oauth&scope=email&state=' + thisState
         try:
             result = urlfetch.fetch(url)
             if result.status_code == 200:
